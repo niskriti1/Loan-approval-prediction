@@ -77,9 +77,6 @@ scaled_input = scaler.transform(raw_input)
 st.markdown("### 🧾 Prediction Result")
 if st.button("Predict Loan Approval"):
     prediction = model.predict(scaled_input)[0]
-    proba = model.predict_proba(scaled_input)[0]
+    proba = model.predict_proba(scaled_input)[0][1]
 
-    if prediction == 1:
-        st.success(f"✅ You have a {proba[1]*100:.1f}% chance of loan approval!")
-    else:
-        st.error(f"❌ You have a {proba[0]*100:.1f}% chance of rejection.")
+    st.success(f"You have a {proba*100:.1f}% chance of loan approval!")
